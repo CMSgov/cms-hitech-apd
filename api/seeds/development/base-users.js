@@ -13,11 +13,12 @@ exports.seed = async knex => {
   await knex('okta_users').insert(oktaUsers)
   logger.info('Completed adding okta_users');
   await knex('state_admin_certifications').insert(stateCertifications)
-  const auditEntries = stateCertifications.map(certification =>{
+  const auditEntries = stateCertifications.map( certification => {
     return {
-      username:certification.uid,
-      changeDate:format( new Date(), 'yyyy-MM-dd HH:mm:ss'),
-      changedBy: 'seeds'
+      username: certification.username,
+      changeDate: format( new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      changedBy: 'seeds',
+      changeType: 'add'
     }
   })
 
